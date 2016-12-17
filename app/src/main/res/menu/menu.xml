@@ -5,6 +5,7 @@
       tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_save"
         android:icon="@drawable/ic_done"
         android:title="@string/action_save"
         app:showAsAction="always"/>
