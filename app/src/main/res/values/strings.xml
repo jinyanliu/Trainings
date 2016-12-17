@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Trainings</string>
+
+    <!-- Label for Day of Week category of attributes in the activity_main [CHAR LIMIT=30] -->
+    <string name="category_day_of_week">Day of Week</string>
+
+    <!-- Label for Training category of attributes in the activity_main [CHAR LIMIT=30] -->
+    <string name="category_training">Training</string>
+
+    <!-- Label for Time category of attributes in the activity_main [CHAR LIMIT=30] -->
+    <string name="category_time">Time</string>
 </resources>
