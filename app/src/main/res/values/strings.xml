@@ -9,4 +9,13 @@
 
     <!-- Label for Time category of attributes in the activity_main [CHAR LIMIT=30] -->
     <string name="category_time">Time</string>
+
+    <!-- Text hint for Training field in the activity_main [CHAR LIMIT=30] -->
+    <string name="hint_training">Training Name</string>
+
+    <!-- Text hint for Time field in the activity_main [CHAR LIMIT=30] -->
+    <string name="hint_time">Training Time</string>
+
+    <!-- Units for time of the training (minutes) [CHAR LIMIT=5] -->
+    <string name="unit_of_time">minutes</string>
 </resources>
