@@ -28,11 +28,11 @@
                 android:text="@string/category_day_of_week"/>
 
             <!-- Input field -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:orientation="vertical">
+                android:paddingLeft="4dp">
 
                 <!-- Day of Week drop-down spinner -->
                 <Spinner
@@ -41,7 +41,7 @@
                     android:paddingRight="16dp"
                     android:spinnerMode="dropdown">
                 </Spinner>
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <!-- Training Category -->
@@ -56,23 +56,19 @@
                 android:text="@string/category_training"/>
 
             <!-- Input field -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:orientation="vertical"
                 android:paddingLeft="4dp">
 
                 <!-- EditText -->
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/EditTextStyle"
                     android:hint="@string/hint_training"
-                    android:inputType="textCapWords"
-                    android:paddingTop="16dp"
-                    android:textSize="16sp">
+                    android:inputType="textCapWords">
                 </EditText>
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <!-- Time Category -->
@@ -95,16 +91,13 @@
 
                 <!-- Time field -->
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/EditTextStyle"
                     android:hint="@string/hint_time"
-                    android:inputType="number"
-                    android:paddingTop="16dp"
-                    android:textSize="16sp"/>
+                    android:inputType="number"/>
 
                 <!-- Units for time (minutes) -->
                 <TextView
-                    style="@style/EditorUnitsStyle"
+                    style="@style/UnitsStyle"
                     android:text="@string/unit_of_time"/>
             </RelativeLayout>
         </LinearLayout>
