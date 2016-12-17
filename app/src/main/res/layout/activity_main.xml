@@ -5,9 +5,9 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
-    tools:context="se.sugarest.jane.trainings.MainActivity"
-    android:orientation="vertical">
+    tools:context="se.sugarest.jane.trainings.MainActivity">
 
     <!-- Layout for the input information -->
     <LinearLayout
@@ -65,24 +65,56 @@
 
                 <!-- EditText -->
                 <EditText
-                    style="@style/EditorFieldStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/hint_training"
-                    android:inputType="textCapWords">
+                    android:inputType="textCapWords"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp">
                 </EditText>
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Time Category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="@string/category_time"/>
 
+            <!-- Input field -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingLeft="4dp">
 
+                <!-- Time field -->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_time"
+                    android:inputType="number"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp"/>
 
+                <!-- Units for time (minutes) -->
+                <TextView
+                    style="@style/EditorUnitsStyle"
+                    android:text="@string/unit_of_time"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Layout for the trainings list -->
     <TextView
+        android:id="@+id/text_view_trainings_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_view_trainings_list"
         android:text="Hello World!"/>
 
 </LinearLayout>
