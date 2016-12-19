@@ -22,7 +22,7 @@ import se.sugarest.jane.trainings.data.TrainingDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    Cursor cursor;
+    private Cursor cursor;
 
     /**
      * Database helper that will provide us access to the database
@@ -171,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Read trainings information from the database
+     * Read all trainings information from the database
      */
-    private void readTraining() {
+    private Cursor readTraining() {
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -195,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
                 null, // Don't group the rows
                 null, // Don't filter by row groups
                 null); // The sort order
+
+        return cursor;
     }
 
     /**

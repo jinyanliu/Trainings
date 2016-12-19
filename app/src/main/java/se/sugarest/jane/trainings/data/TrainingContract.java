@@ -8,6 +8,7 @@ import android.provider.BaseColumns;
 
 public class TrainingContract {
 
+    // An empty private constructor makes sure that the class is not going to be initialised.
     private TrainingContract() {
     }
 
