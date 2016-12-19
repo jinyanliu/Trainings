@@ -16,7 +16,7 @@ public class TrainingContract {
         public final static String TABLE_NAME = "trainings";
 
         public final static String _ID = BaseColumns._ID;
-        public final static String COLUMN_TRAINING_DAY_OF_WEEK = "day of week";
+        public final static String COLUMN_TRAINING_DAY_OF_WEEK = "day";
         public final static String COLUMN_TRAINING_TRAINING = "training";
         public final static String COLUMN_TRAINING_TIME = "time";
 
