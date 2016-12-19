@@ -22,27 +22,25 @@ import se.sugarest.jane.trainings.data.TrainingDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    Cursor cursor;
+
     /**
      * Database helper that will provide us access to the database
      */
     private TrainingDbHelper mDbHelper;
-
     /**
      * EditText field to enter the training's name
      */
     private EditText mTrainingEditText;
-
     /**
      * EditText field to enter the training's time
      */
 
     private EditText mTimeEditText;
-
     /**
      * EditText field to enter the day of week
      */
     private Spinner mDayOfWeekSpinner;
-
     /**
      * Day of week. The possible values are:
      * 1 for monday, 2 for tuesday, 3 for wednesday, 4 for thursday, 5 for friday,
@@ -125,26 +123,8 @@ public class MainActivity extends AppCompatActivity {
      * of the trainings database.
      */
     private void displayDatabaseInfo() {
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        // Define a projection that specifies which columns from the database
-        // you will actually use after this query.
-        String[] projection = {
-                TrainingEntry._ID,
-                TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK,
-                TrainingEntry.COLUMN_TRAINING_TRAINING,
-                TrainingEntry.COLUMN_TRAINING_TIME};
-
-        // Perform a query on the trainings table
-        Cursor cursor = db.query(
-                TrainingEntry.TABLE_NAME, // The table to query
-                projection, // The columns to return
-                null, // The columns for the WHERE clause
-                null, // The values for the WHERE clause
-                null, // Don't group the rows
-                null, // Don't filter by row groups
-                null); // The sort order
+        readTraining();
 
         TextView displayView = (TextView) findViewById(R.id.text_view_trainings_list);
 
@@ -188,6 +168,33 @@ public class MainActivity extends AppCompatActivity {
             // resources and makes it invalid.
             cursor.close();
         }
+    }
+
+    /**
+     * Read trainings information from the database
+     */
+    private void readTraining() {
+
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                TrainingEntry._ID,
+                TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK,
+                TrainingEntry.COLUMN_TRAINING_TRAINING,
+                TrainingEntry.COLUMN_TRAINING_TIME};
+
+        // Perform a query on the trainings table
+        cursor = db.query(
+                TrainingEntry.TABLE_NAME, // The table to query
+                projection, // The columns to return
+                null, // The columns for the WHERE clause
+                null, // The values for the WHERE clause
+                null, // Don't group the rows
+                null, // Don't filter by row groups
+                null); // The sort order
     }
 
     /**
