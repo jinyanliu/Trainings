@@ -13,6 +13,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Helper method to insert hardcoded training data into the database. For debugging purpose only.
+     */
+    private void insertDummyTraining(){
+
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu.xml file.
