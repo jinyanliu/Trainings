@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import se.sugarest.jane.trainings.data.TrainingContract.TrainingEntry;
 import se.sugarest.jane.trainings.data.TrainingDbHelper;
@@ -58,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper = new TrainingDbHelper(this);
 
         // Find all relevant views that we will need to read user input from
-        mTrainingEditText = (EditText)findViewById(R.id.edit_training_name);
-        mTimeEditText = (EditText)findViewById(R.id.edit_training_time);
-        mDayOfWeekSpinner = (Spinner)findViewById(R.id.spinner_day_of_week);
+        mTrainingEditText = (EditText) findViewById(R.id.edit_training_name);
+        mTimeEditText = (EditText) findViewById(R.id.edit_training_time);
+        mDayOfWeekSpinner = (Spinner) findViewById(R.id.spinner_day_of_week);
 
         setupSpinner();
     }
@@ -199,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and Monday's training attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK, "Monday");
+        values.put(TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK, TrainingEntry.DAY_OF_WEEK_MONDAY);
         values.put(TrainingEntry.COLUMN_TRAINING_TRAINING, "BodyCombat");
         values.put(TrainingEntry.COLUMN_TRAINING_TIME, 100);
 
@@ -211,6 +213,48 @@ public class MainActivity extends AppCompatActivity {
         // there are no values).
         // The third argument is the ContentValues object containing the info for Monday's training.
         long newRowId = db.insert(TrainingEntry.TABLE_NAME, null, values);
+    }
+
+    /**
+     * Get user input information and save new training into database.
+     */
+    private void insertTraining() {
+
+        // Read from input fields
+        // Use trim to eliminate leading or trailing white space
+        String trainingString = mTrainingEditText.getText().toString().trim();
+        String timeString = mTimeEditText.getText().toString().trim();
+        int timeInt = Integer.parseInt(timeString);
+
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a ContentValues object where column names are the keys,
+        // and user input attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK, mDayOfWeek);
+        values.put(TrainingEntry.COLUMN_TRAINING_TRAINING, trainingString);
+        values.put(TrainingEntry.COLUMN_TRAINING_TIME, timeString);
+
+        // Insert a new row for user input in the database, returning the ID of that row.
+        // The first argument for db.insert() is the trainings table name.
+        // The second argument provides the name of a column in which the framework
+        // can insert NULL in the event that the ContentValues is empty (if
+        // this is set to "null", then the framework will not insert a row when
+        // there are no values).
+        // The third argument is the ContentValues object containing the info for user input.
+        long newRowId = db.insert(TrainingEntry.TABLE_NAME, null, values);
+
+        // Show a toast message depending on whether or not insertion was successful
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, "Error with saving training", Toast.LENGTH_SHORT).show();
+        } else {
+            //Otherwise, the insertion was successful and we can display a toast with the row ID.
+            Toast.makeText(this, "Training saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+        }
+
+        Log.v("MainActivity", "New row ID " + newRowId);
     }
 
     @Override
@@ -227,7 +271,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                //
+                insertTraining();
+                displayDatabaseInfo();
                 return true;
             case R.id.action_insert_dummy_data:
                 insertDummyTraining();
