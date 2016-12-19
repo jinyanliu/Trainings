@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_save:
                 //
                 return true;
+            case R.id.action_insert_dummy_data:
+                //
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
