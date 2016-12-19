@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK, mDayOfWeek);
         values.put(TrainingEntry.COLUMN_TRAINING_TRAINING, trainingString);
-        values.put(TrainingEntry.COLUMN_TRAINING_TIME, timeString);
+        values.put(TrainingEntry.COLUMN_TRAINING_TIME, timeInt);
 
         // Insert a new row for user input in the database, returning the ID of that row.
         // The first argument for db.insert() is the trainings table name.

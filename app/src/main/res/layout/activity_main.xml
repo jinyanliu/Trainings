@@ -36,11 +36,11 @@
 
                 <!-- Day of Week drop-down spinner -->
                 <Spinner
+                    android:id="@+id/spinner_day_of_week"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:paddingRight="16dp"
-                    android:spinnerMode="dropdown"
-                    android:id="@+id/spinner_day_of_week">
+                    android:spinnerMode="dropdown">
                 </Spinner>
             </RelativeLayout>
         </LinearLayout>
@@ -65,10 +65,10 @@
 
                 <!-- EditText -->
                 <EditText
+                    android:id="@+id/edit_training_name"
                     style="@style/EditTextStyle"
                     android:hint="@string/hint_training"
-                    android:inputType="textCapWords"
-                    android:id="@+id/edit_training_name">
+                    android:inputType="textCapWords">
                 </EditText>
             </RelativeLayout>
         </LinearLayout>
@@ -93,10 +93,10 @@
 
                 <!-- Time field -->
                 <EditText
+                    android:id="@+id/edit_training_time"
                     style="@style/EditTextStyle"
                     android:hint="@string/hint_time"
-                    android:inputType="number"
-                    android:id="@+id/edit_training_time"/>
+                    android:inputType="number"/>
 
                 <!-- Units for time (minutes) -->
                 <TextView
