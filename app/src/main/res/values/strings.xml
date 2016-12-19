@@ -24,4 +24,25 @@
 
     <!-- Label for menu option to save input information [CHAR LIMIT=20] -->
     <string name="action_save">Save</string>
+
+    <!-- Label for dropdown menu option for monday [CHAR LIMIT=20] -->
+    <string name="day_of_week_monday">Monday</string>
+
+    <!-- Label for dropdown menu option for tuesday [CHAR LIMIT=20] -->
+    <string name="day_of_week_tuesday">Tuesday</string>
+
+    <!-- Label for dropdown menu option for wednesday [CHAR LIMIT=20] -->
+    <string name="day_of_week_wednesday">Wednesday</string>
+
+    <!-- Label for dropdown menu option for thursday [CHAR LIMIT=20] -->
+    <string name="day_of_week_thursday">Thursday</string>
+
+    <!-- Label for dropdown menu option for friday [CHAR LIMIT=20] -->
+    <string name="day_of_week_friday">Friday</string>
+
+    <!-- Label for dropdown menu option for saturday [CHAR LIMIT=20] -->
+    <string name="day_of_week_saturday">Saturday</string>
+
+    <!-- Label for dropdown menu option for friday [CHAR LIMIT=20] -->
+    <string name="day_of_week_sunday">Sunday</string>
 </resources>

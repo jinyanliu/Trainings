@@ -5,8 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import se.sugarest.jane.trainings.data.TrainingContract.TrainingEntry;
@@ -19,6 +25,29 @@ public class MainActivity extends AppCompatActivity {
      */
     private TrainingDbHelper mDbHelper;
 
+    /**
+     * EditText field to enter the training's name
+     */
+    private EditText mTrainingEditText;
+
+    /**
+     * EditText field to enter the training's time
+     */
+
+    private EditText mTimeEditText;
+
+    /**
+     * EditText field to enter the day of week
+     */
+    private Spinner mDayOfWeekSpinner;
+
+    /**
+     * Day of week. The possible values are:
+     * 1 for monday, 2 for tuesday, 3 for wednesday, 4 for thursday, 5 for friday,
+     * 6 for saturday, 7 for sunday
+     */
+    private int mDayOfWeek = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +56,66 @@ public class MainActivity extends AppCompatActivity {
         // To access the databse, instantiate the subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
         mDbHelper = new TrainingDbHelper(this);
+
+        // Find all relevant views that we will need to read user input from
+        mTrainingEditText = (EditText)findViewById(R.id.edit_training_name);
+        mTimeEditText = (EditText)findViewById(R.id.edit_training_time);
+        mDayOfWeekSpinner = (Spinner)findViewById(R.id.spinner_day_of_week);
+
+        setupSpinner();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         displayDatabaseInfo();
+    }
+
+    /**
+     * Setup the dropdown spinner that allows the user to select the day of the week.
+     */
+    private void setupSpinner() {
+        // Create adapter for spinner. The list options are from the String array it will use
+        // the spinner will use the default layout
+        ArrayAdapter dayOfWeekSpinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.array_day_of_week_options, android.R.layout.simple_spinner_item);
+
+        // Specify dropdown layout style - simple list view with 1 item per line
+        dayOfWeekSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+
+        // Apply the adapter to the spinner
+        mDayOfWeekSpinner.setAdapter(dayOfWeekSpinnerAdapter);
+
+        // Set the integer mSelected to the constant values
+        mDayOfWeekSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selection = (String) parent.getItemAtPosition(position);
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.day_of_week_monday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_MONDAY;
+                    } else if (selection.equals(getString(R.string.day_of_week_tuesday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_TUESDAY;
+                    } else if (selection.equals(getString(R.string.day_of_week_wednesday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_WEDNESDAY;
+                    } else if (selection.equals(getString(R.string.day_of_week_thursday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_THURSDAY;
+                    } else if (selection.equals(getString(R.string.day_of_week_friday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_FRIDAY;
+                    } else if (selection.equals(getString(R.string.day_of_week_saturday))) {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_SATURDAY;
+                    } else {
+                        mDayOfWeek = TrainingEntry.DAY_OF_WEEK_SUNDAY;
+                    }
+                }
+            }
+
+            // Because AdapterView is an abstract calss, doNothingSelected must be defined
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mDayOfWeek = 1;
+            }
+        });
     }
 
     /**
