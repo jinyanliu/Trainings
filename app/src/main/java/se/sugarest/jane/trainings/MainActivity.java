@@ -191,31 +191,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Helper method to insert hardcoded training data into the database. For debugging purpose only.
-     */
-    private void insertDummyTraining() {
-
-        // Gets the database in write mode.
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        // Create a ContentValues object where column names are the keys,
-        // and Monday's training attributes are the values.
-        ContentValues values = new ContentValues();
-        values.put(TrainingEntry.COLUMN_TRAINING_DAY_OF_WEEK, TrainingEntry.DAY_OF_WEEK_MONDAY);
-        values.put(TrainingEntry.COLUMN_TRAINING_TRAINING, "BodyCombat");
-        values.put(TrainingEntry.COLUMN_TRAINING_TIME, 100);
-
-        // Insert a new row for Monday's training in the database, returning the ID of that new row.
-        // The first argument for db.insertDummyTraining() is the trainings table name.
-        // The second argument provides the name of a column in which the framework
-        // can insert NULL in the event that the ContentValues is empty (if
-        // this is set to "null", then the framework will not insert a row when
-        // there are no values).
-        // The third argument is the ContentValues object containing the info for Monday's training.
-        long newRowId = db.insert(TrainingEntry.TABLE_NAME, null, values);
-    }
-
-    /**
      * Get user input information and save new training into database.
      */
     private void insertTraining() {
@@ -272,10 +247,6 @@ public class MainActivity extends AppCompatActivity {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 insertTraining();
-                displayDatabaseInfo();
-                return true;
-            case R.id.action_insert_dummy_data:
-                insertDummyTraining();
                 displayDatabaseInfo();
                 return true;
         }
