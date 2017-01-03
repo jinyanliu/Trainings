@@ -10,4 +10,4 @@ Implemented a subclass of SQLiteOpenHelper to write and store trainings' data in
 Show a Toast message at the bottom when a training's data is successfully saved into the database. 
 
 # App ScreenShots
-<img src="screenshots/1.png" width="24%"/> <img src="screenshots/2.png" width="24%"/> <img src="screenshots/3.png" width="24%"/> <img src="screenshots/4.png" width="24%"/> <img src="screenshots/5.png" width="24%"/> <img src="screenshots/6.png" width="24%"/> 
+<img src="screenshots/start.png" width="24%"/> <img src="screenshots/monday.png" width="24%"/> <img src="screenshots/wednesday_spinner.png" width="24%"/> <img src="screenshots/wednesday.png" width="24%"/> <img src="screenshots/friday.png" width="24%"/> <img src="screenshots/sunday.png" width="24%"/> 
